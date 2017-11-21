@@ -23,31 +23,40 @@ LESS_THAN_TWENTY = [
 
 MULT_OF_TEN = %w(Zero Ten Twenty Thirty Forty Fifty Sixty Seventy Eighty Ninety).freeze
 
+# Given 0 < n < 1000000000, returns correct English equivalent string
 def num_to_english(n)
   english_num = ""
+
+  # Add millions to result
   millions = n / 1000000
   n %= 1000000
-  english_num += millions > 0 ? hundreds_to_english(millions) + " Million " : ""
+  english_num +=
+    millions > 0 ? hundreds_to_english(millions) + " Million " : ""
 
+  # Add thousands to result
   thousands = n / 1000
   n %= 1000
-  english_num += thousands > 0 ? hundreds_to_english(thousands) + " Thousand " : ""
+  english_num +=
+    thousands > 0 ? hundreds_to_english(thousands) + " Thousand " : ""
 
+  # Add last 3 digits to result
   english_num += hundreds_to_english(n)
   english_num.strip
 end
 
+# Given n < 1000, returns correct English equivalent string
 def hundreds_to_english(n)
-  english_hundreds = ""
+  english_num = ""
   hundreds_digit = n / 100
   last_two_digits = n % 100
   if hundreds_digit > 0
-    english_hundreds += LESS_THAN_TWENTY[hundreds_digit] + " Hundred "
+    english_num += LESS_THAN_TWENTY[hundreds_digit] + " Hundred "
   end
-  english_hundreds += tens_to_english(last_two_digits)
-  english_hundreds.strip
+  english_num += tens_to_english(last_two_digits)
+  english_num.strip
 end
 
+# Given n < 100, returns correct English equivalent string
 def tens_to_english(n)
   tens_digit = n / 10
   ones_digit = n % 10
