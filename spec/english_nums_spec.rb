@@ -75,6 +75,7 @@ describe '#num_to_english' do
     it 'returns correctly hyphenated words' do
       expect(num_to_english(121008)).to eq("One Hundred Twenty-One Thousand Eight")
       expect(num_to_english(100300)).to eq("One Hundred Thousand Three Hundred")
+      expect(num_to_english(609003)).to eq("Six Hundred Nine Thousand Three")
       expect(num_to_english(837265)).to eq("Eight Hundred Thirty-Seven Thousand Two Hundred Sixty-Five")
     end
     it 'returns correct words for multiples of 1000' do
